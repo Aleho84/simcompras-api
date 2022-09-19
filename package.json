@@ -1,0 +1,38 @@
+{
+  "name": "simcompras-api",
+  "version": "0.1.0",
+  "description": "backend de simcompras ecomerce",
+  "main": "./src/api.js",
+  "type": "module",
+  "scripts": {
+    "prod": "node .",
+    "dev": "nodemon ."
+  },
+  "author": {
+    "name": "Alejandro Abraham",
+    "email": "alejandro.r.abraham@gmail.com",
+    "url": "https://github.com/Aleho84"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cluster": "^0.7.7",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.6.1",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.5.2",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
+    "winston": "^3.8.2"
+  },
+  "nodemonConfig": {
+    "ignore": []
+  }
+}
