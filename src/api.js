@@ -85,8 +85,53 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     connectMongoDB()
 
     // HTTP SERVER
-    const server = app.listen(PORT, () =>
+    const portNormalizer = normalizePort(process.env.PORT || '8080')
+    app.set('port', portNormalizer)
+    const server = http.createServer(app)
+    server.listen(portNormalizer)
+    server.on('error', onError)
+    server.on('listening', onListening)
+
+    function normalizePort(val) {
+        // normaliza un puerto en un numero, una cadena o un valor falso.
+        const port = parseInt(val, 10)
+
+        if (isNaN(port)) { return val }
+        if (port >= 0) { return port }
+        return false
+    }
+
+    function onError(error) {
+        // event listener para HTTP server cuando devuelve "error"
+        if (error.syscall !== 'listen') {
+            throw error
+        }
+
+        const bind = typeof port === 'string'
+            ? 'Pipe ' + port
+            : 'Port ' + port
+
+        switch (error.code) {
+            case 'EACCES':
+                logger.info(`Server HTTP: ${bind} requiere permisos elevados`)
+                process.exit(1)
+                break
+            case 'EADDRINUSE':
+                logger.info(`Server HTTP: ${bind} ya esta utilizado`)
+                process.exit(1)
+                break
+            default:
+                logger.info(`Server HTTP: Error al conectar: [${error}]`)
+                throw error
+        }
+    }
+
+    function onListening() {
+        // event listener para HTTP server
+        const addr = server.address()
+        const bind = typeof addr === 'string'
+            ? 'pipe ' + addr
+            : 'port ' + addr.port
         logger.info(`💻 Server started on port ${PORT}. 🛠  Worker PID: ${process.pid}. MODO:${RUN_MODE} [${new Date().toLocaleString()}]`)
-    )
-    server.on('error', (err) => logger.error(err))
+    }
 }
