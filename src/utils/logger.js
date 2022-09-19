@@ -1,12 +1,17 @@
 import winston from 'winston'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import 'dotenv/config'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 function loggerProd() {
     return winston.createLogger({
         format: winston.format.json(),
         transports: [
-            new winston.transports.File({ filename: 'error.log', level: 'error' }),
-            new winston.transports.File({ filename: 'info.log' })
+            new winston.transports.File({ filename: path.join(__dirname, '../public/logs/error.log'), level: 'error' }),
+            new winston.transports.File({ filename: path.join(__dirname, '../public/logs/info.log') })
         ]
     })
 }
