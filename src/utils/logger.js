@@ -10,8 +10,8 @@ function loggerProd() {
     return winston.createLogger({
         format: winston.format.json(),
         transports: [
-            new winston.transports.File({ filename: path.join(__dirname, '../public/logs/error.log'), level: 'error' }),
-            new winston.transports.File({ filename: path.join(__dirname, '../public/logs/info.log') })
+            new winston.transports.File({ filename: path.join(__dirname, '../logs/error.log'), level: 'error' }),
+            new winston.transports.File({ filename: path.join(__dirname, '../logs/info.log') })
         ]
     })
 }
