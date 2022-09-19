@@ -4,11 +4,11 @@
 
 # 
 
-##Dependencies
+## Dependencies
 **Install all dependencies:**`npm install`
 # 
 
-##Envrioment variables
+## Envrioment variables
 You will need to pass the following environment variables 
 (.env file example)
 
