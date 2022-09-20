@@ -1,6 +1,11 @@
 # SimCompras-API
 ` SimCompras-API v0.1.0 - Backend E-Commerce`
-`<deploy>` : https://simcompras-api.herokuapp.com/
+
+`<website>` : https://simcompras-api.herokuapp.com/
+
+![](https://img.shields.io/website?style=plastic&url=https%3A%2F%2Fsimcompras-api.herokuapp.com%2F)
+![](https://img.shields.io/github/package-json/v/aleho84/simcompras-api?style=plastic)
+
 
 # 
 
@@ -37,4 +42,5 @@ You will need to pass the following environment variables
 - Runs test of enpoints whit mocha
 
 # 
-![](https://img.shields.io/github/last-commit/aleho84/simcompras-api?style=plastic) ![](https://img.shields.io/github/commit-activity/y/aleho84/simcompras-api?style=plastic)
+![](https://img.shields.io/github/last-commit/aleho84/simcompras-api?style=plastic) 
+![](https://img.shields.io/github/commit-activity/y/aleho84/simcompras-api?style=plastic)
