@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "apitest": "node node_modules/mocha/bin/mocha.js ./src/test/api.test.js",
+    "simpletest": "node ./src/test/simple.test.js"
   },
   "author": {
     "name": "Alejandro Abraham",
@@ -34,5 +36,12 @@
   },
   "nodemonConfig": {
     "ignore": []
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
+    "axios": "^0.27.2",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.20"
   }
 }

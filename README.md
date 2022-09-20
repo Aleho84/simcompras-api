@@ -33,5 +33,8 @@ You will need to pass the following environment variables
 - Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 - The page will reload if you make edits
 
+`npm run apitest`
+- Runs test of enpoints whit mocha
+
 # 
 ![](https://img.shields.io/github/last-commit/aleho84/simcompras-api?style=plastic) ![](https://img.shields.io/github/commit-activity/y/aleho84/simcompras-api?style=plastic)
