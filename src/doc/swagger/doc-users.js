@@ -21,7 +21,7 @@
  *         "200":
  *           description: OK. Login successfully.
  *         "401":
- *           description: Unauthorized. login faild.
+ *           description: Unauthorized. Login faild.
  *         "500":
  *           description: Internal Server Error.
  */

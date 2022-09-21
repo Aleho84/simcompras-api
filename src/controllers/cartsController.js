@@ -1,4 +1,5 @@
 import { cartsDao as api } from '../daos/index.js'
+import logger from '../utils/logger.js'
 
 export const getCarts = async (req, res) => {
     try {
@@ -9,6 +10,7 @@ export const getCarts = async (req, res) => {
             res.status(200).json(carts)
         }
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -18,6 +20,7 @@ export const getCartById = async (req, res) => {
         const cart = await api.get(req.params.id)
         cart ? res.status(200).json(cart) : res.status(404).json({ message: `Cart not found. ID:${req.params.id}` })
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -31,6 +34,7 @@ export const postCart = async (req, res) => {
             cart: newCart
         })
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -54,6 +58,7 @@ export const postProductsCart = async (req, res) => {
             res.status(404).json({ message: 'The product list is empty' })
         }
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -65,6 +70,7 @@ export const getProductsCart = async (req, res) => {
             ? res.status(200).json(carts.products)
             : res.status(404).json({ message: `Cart not found. ID:${req.params.id}` })
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -88,6 +94,22 @@ export const deleteProductsCart = async (req, res) => {
             res.status(404).json({ message: `The product ID:${req.params.id} does not exist` })
         }
     } catch (err) {
+        logger.error(err)
+        res.status(500).json({ message: err.message, line: err.line })
+    }
+}
+
+export const deleteCart = async (req, res) => {
+    try {
+        const cartDeleted = await api.delete(req.params.id)
+        cartDeleted
+            ? res.status(200).json({
+                message: 'Cart deleted successfully',
+                cart: cartDeleted
+            })
+            : res.status(404).json({ message: `Cart not found. ID:${req.params.id}` })
+    } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }

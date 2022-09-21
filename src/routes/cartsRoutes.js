@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import { isAuth } from '../utils/isAuth.js'
+
 const cartsRouter = Router()
 
 import {
@@ -7,14 +9,16 @@ import {
     postCart,
     getProductsCart,
     postProductsCart,
-    deleteProductsCart
-} from '../controllers/cartsControllers.js'
+    deleteProductsCart,
+    deleteCart
+} from '../controllers/cartsController.js'
 
-cartsRouter.get('/', getCarts)
-cartsRouter.get('/:id', getCartById)
-cartsRouter.post('/', postCart)
-cartsRouter.get('/:id/products', getProductsCart)
-cartsRouter.post('/:id/products', postProductsCart)
-cartsRouter.delete('/:id/products/:productId', deleteProductsCart)
+cartsRouter.get('/', isAuth, getCarts)
+cartsRouter.get('/:id', isAuth, getCartById)
+cartsRouter.get('/:id/products', isAuth, getProductsCart)
+cartsRouter.post('/', isAuth, postCart)
+cartsRouter.post('/:id/products', isAuth, postProductsCart)
+cartsRouter.delete('/:id/products/:productId', isAuth, deleteProductsCart)
+cartsRouter.delete('/:id', isAuth, deleteCart)
 
 export default cartsRouter

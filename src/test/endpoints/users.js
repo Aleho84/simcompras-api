@@ -1,11 +1,16 @@
 import axios from 'axios'
 import userGenerator from '../generators/user.js'
-
 import 'dotenv/config'
-const SERVER_SWAGGER = process.env.SERVER_SWAGGER
+import {
+    PROTOCOL,
+    HOST,
+    PORT
+} from '../../config/constant.js'
+
+const URL = `${PROTOCOL}://${HOST}:${PORT}`
 
 export const postLogInUser = async () => {
-    const urlRequest = `${SERVER_SWAGGER}/api/users/login`
+    const urlRequest = `${URL}/api/users/login`
     const body = {
         "email": "pepeargento@mail.com",
         "password": "fatiga"
@@ -15,20 +20,20 @@ export const postLogInUser = async () => {
 }
 
 export const postSignInUser = async () => {
-    const urlRequest = `${SERVER_SWAGGER}/api/users/signin`
+    const urlRequest = `${URL}/api/users/signin`
     const body = userGenerator()
     const response = await axios.post(urlRequest, body)
     return response.data
 }
 
 export const getCurrentUser = async () => {
-    const urlRequest = `${SERVER_SWAGGER}/api/users/currentUser`
+    const urlRequest = `${URL}/api/users/currentUser`
     const response = await axios.get(urlRequest)
     return response.data
 }
 
 export const getLogOutUser = async () => {
-    const urlRequest = `${SERVER_SWAGGER}/api/users/logout`
+    const urlRequest = `${URL}/api/users/logout`
     const response = await axios.get(urlRequest)
     return response.data
 }

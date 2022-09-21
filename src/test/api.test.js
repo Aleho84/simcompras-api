@@ -45,66 +45,80 @@ describe('Test simcompras-api', () => {
         })
     })
 
-    describe('Products test:', () => {
+    // *** Ver el tema de session para poder usar chai o implementar JWT ***
 
-        let idProduct1 = ''
-        let idProduct2 = ''
+    // describe('Products test:', () => {
 
-        describe('postProducts:', () => {
-            it('type:', async () => {
-                const test = await postProducts()
-                idProduct1 = test.product._id
-                assert.typeOf(test, 'object')
-            })
-            it('keys:', async () => {
-                const test = await postProducts()
-                idProduct2 = test.product._id
-                assert.hasAllKeys(test, ['message', 'product'])
-            })
-        })
+    //     let idProduct1 = ''
+    //     let idProduct2 = ''
 
-        describe('getProductId:', () => {
-            it('type:', async () => {
-                const test = await getProductId(idProduct1)
-                assert.typeOf(test, 'object')
-            })
-            it('keys:', async () => {
-                const test = await getProductId(idProduct2)
-                assert.hasAllKeys(test, ['_id', 'name', 'description', 'code', 'thumbnail', 'price', 'stock', '__v'])
-            })
-        })
+    //     describe('getProducts:', () => {
+    //         it('type:', async () => {
+    //             const test = await getProducts()
+    //             assert.typeOf(test, 'array')
+    //         })
+    //         it('keys:', async () => {
+    //             const test = await postProducts()
+    //             idProduct2 = test.product._id
+    //             assert.hasAllKeys(test, ['message', 'product'])
+    //         })
+    //     })
 
-        describe('putProductId:', () => {
-            it('type:', async () => {
-                const test = await putProductId(idProduct1)
-                assert.typeOf(test, 'object')
-            })
-            it('keys:', async () => {
-                const test = await putProductId(idProduct2)
-                assert.hasAllKeys(test, ['message', 'product'])
-            })
-        })
+    //     describe('postProducts:', () => {
+    //         it('type:', async () => {
+    //             const test = await postProducts()
+    //             idProduct1 = test.product._id
+    //             assert.typeOf(test, 'object')
+    //         })
+    //         it('keys:', async () => {
+    //             const test = await postProducts()
+    //             idProduct2 = test.product._id
+    //             assert.hasAllKeys(test, ['message', 'product'])
+    //         })
+    //     })
 
-        describe('deleteProductId:', () => {
-            it('type:', async () => {
-                const test = await deleteProductId(idProduct1)
-                assert.typeOf(test, 'object')
-            })
-            it('keys:', async () => {
-                const test = await deleteProductId(idProduct2)
-                assert.hasAllKeys(test, ['message', 'product'])
-            })
-        })
+    //     describe('getProductId:', () => {
+    //         it('type:', async () => {
+    //             const test = await getProductId(idProduct1)
+    //             assert.typeOf(test, 'object')
+    //         })
+    //         it('keys:', async () => {
+    //             const test = await getProductId(idProduct2)
+    //             assert.hasAllKeys(test, ['_id', 'name', 'description', 'code', 'thumbnail', 'price', 'stock', '__v'])
+    //         })
+    //     })
 
-        describe('getProducts:', () => {
-            it('type:', async () => {
-                const test = await getProducts()
-                assert.typeOf(test, 'array')
-            })
-            it('keys:', async () => {
-                const test = await getProducts()
-                assert.hasAllKeys(test[0], ['_id', 'name', 'description', 'code', 'thumbnail', 'price', 'stock', '__v'])
-            })
-        })
-    })
+    //     describe('putProductId:', () => {
+    //         it('type:', async () => {
+    //             const test = await putProductId(idProduct1)
+    //             assert.typeOf(test, 'object')
+    //         })
+    //         it('keys:', async () => {
+    //             const test = await putProductId(idProduct2)
+    //             assert.hasAllKeys(test, ['message', 'product'])
+    //         })
+    //     })
+
+    //     describe('deleteProductId:', () => {
+    //         it('type:', async () => {
+    //             const test = await deleteProductId(idProduct1)
+    //             assert.typeOf(test, 'object')
+    //         })
+    //         it('keys:', async () => {
+    //             const test = await deleteProductId(idProduct2)
+    //             assert.hasAllKeys(test, ['message', 'product'])
+    //         })
+    //     })
+
+    //     describe('getProducts:', () => {
+    //         it('type:', async () => {
+    //             const test = await getProducts()
+    //             assert.typeOf(test, 'array')
+    //         })
+    //         it('keys:', async () => {
+    //             const test = await getProducts()
+    //             assert.hasAllKeys(test[0], ['_id', 'name', 'description', 'code', 'thumbnail', 'price', 'stock', '__v'])
+    //         })
+    //     })
+    // })
 })

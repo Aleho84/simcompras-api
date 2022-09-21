@@ -92,9 +92,14 @@
  *       type: object
  *       properties:
  *         products:
- *           $ref: '#/components/schemas/GetProduct'
- *         amount:
- *           type: integer
- *           minimum: 1
- *           example: 1
+ *           type: array
+ *           items:
+ *            type: object
+ *            properties:
+ *              amount:
+ *                type: integer
+ *                example: 1
+ *              _id:
+ *                type: string
+ *                example: "63249d64db15630bcc5d2067"
  */
