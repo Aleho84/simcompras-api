@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
-    "apitest": "node node_modules/mocha/bin/mocha.js ./src/test/api.test.js",
+    "test": "node node_modules/mocha/bin/mocha.js ./src/test/api.test.js",
     "simpletest": "node ./src/test/simple.test.js"
   },
   "author": {

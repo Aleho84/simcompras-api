@@ -2,6 +2,7 @@
   "name": "simcompras-api",
   "script": "./src/api.js",
   "watch": true,
+  "ignore_watch": ["node_modules", "./src/logs"],  
   "env": {
     "PORT": 3000,
     "NODE_ENV": "production",
