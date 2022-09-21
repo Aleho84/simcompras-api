@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { isAuth } from '../utils/isAuth.js'
 const productsRouter = Router()
 
 import {
@@ -11,8 +12,8 @@ import {
 
 productsRouter.get('/', getProducts)
 productsRouter.get('/:id', getProductById)
-productsRouter.post('/', postProduct)
-productsRouter.put('/:id', putProduct)
-productsRouter.delete('/:id', deleteProduct)
+productsRouter.post('/', isAuth, postProduct)
+productsRouter.put('/:id', isAuth, putProduct)
+productsRouter.delete('/:id', isAuth, deleteProduct)
 
 export default productsRouter
