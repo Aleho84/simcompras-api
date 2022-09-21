@@ -38,7 +38,7 @@ You will need to pass the following environment variables
 - Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 - The page will reload if you make edits
 
-`npm run apitest`
+`npm run test`
 - Runs test of enpoints whit mocha
 
 # 
