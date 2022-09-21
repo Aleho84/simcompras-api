@@ -12,24 +12,24 @@ jobs:
         node-version: [16.x]
 
     steps:
+      -run: pm2 stop 0
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1.3
+      - name: Create .env file
+        uses: ozaytsev86/create-env-file@v1
         with:
-          envkey_NODE_ENV: "production"
-          envkey_PORT: 8080
-          envkey_DB_MODE: "mongoDB"
-          envkey_RUN_MODE: "fork"
-          envkey_SECRET_STRING: "ADLVFEyWItdkAi9V1KPt"
-          envkey_TIME_SESSION: 60
-          envkey_MONGOOSE_URI: "mongodb://simcompras:simpass@192.168.0.3:27017/simcompras"
-          envkey_SERVER_SWAGGER: "http://192.168.0.3:8080"
-          file_name: .env
-          fail_on_empty: true
+          ENV_NODE_ENV: "production"
+          ENV_PORT: 8080
+          ENV_DB_MODE: "mongoDB"
+          ENV_RUN_MODE: "fork"
+          ENV_SECRET_STRING: "ADLVFEyWItdkAi9V1KPt"
+          ENV_TIME_SESSION: 60
+          ENV_MONGOOSE_URI: "mongodb://simcompras:simpass@192.168.0.3:27017/simcompras"
+          ENV_SERVER_SWAGGER: "http://192.168.0.3:8080"
+      -run: pm2 start 0
       - run: npm run build --if-present
       - run: npm run test --if-present
