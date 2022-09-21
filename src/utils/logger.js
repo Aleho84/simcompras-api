@@ -11,7 +11,8 @@ function loggerProd() {
         format: winston.format.json(),
         transports: [
             new winston.transports.File({ filename: path.join(__dirname, '../logs/error.log'), level: 'error' }),
-            new winston.transports.File({ filename: path.join(__dirname, '../logs/info.log') })
+            new winston.transports.File({ filename: path.join(__dirname, '../logs/info.log') }),
+            new winston.transports.Console({ format: winston.format.simple() })
         ]
     })
 }
@@ -27,7 +28,7 @@ function loggerDev() {
 
 let logger = null
 
-if (process.env.NODE_ENV === 'PROD') {
+if (process.env.NODE_ENV === 'production') {
     logger = loggerProd()
     logger.info('logger in production mode.')
 } else {

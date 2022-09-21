@@ -17,7 +17,7 @@
 You will need to pass the following environment variables 
 (.env file example)
 
-	NODE_ENV=PROD
+	NODE_ENV=production
 	PORT=8080
 	DB_MODE=mongoDB
 	RUN_MODE=fork
