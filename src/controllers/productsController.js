@@ -1,4 +1,5 @@
 import { productsDao as api } from '../daos/index.js'
+import logger from '../utils/logger.js'
 
 export const getProducts = async (req, res) => {
     try {
@@ -9,6 +10,7 @@ export const getProducts = async (req, res) => {
             res.status(200).json(products)
         }
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -19,6 +21,7 @@ export const getProductById = async (req, res) => {
         product ? res.status(200).json(product) : res.status(404).json({ message: `Product not found. ID:${req.params.id}` })
     }
     catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -31,6 +34,7 @@ export const postProduct = async (req, res) => {
             product: newProduct
         })
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -45,6 +49,7 @@ export const putProduct = async (req, res) => {
             })
             : res.status(404).json({ message: `Product not found. ID:${req.params.id}` })
     } catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
@@ -60,6 +65,7 @@ export const deleteProduct = async (req, res) => {
             : res.status(404).json({ message: `Product not found. ID:${req.params.id}` })
     }
     catch (err) {
+        logger.error(err)
         res.status(500).json({ message: err.message, line: err.line })
     }
 }

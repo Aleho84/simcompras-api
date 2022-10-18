@@ -2,15 +2,19 @@ import express from 'express'
 import swaggerJsDoc from 'swagger-jsdoc'
 import swaggerUI from 'swagger-ui-express'
 import packageJson from '../../package.json' assert {type: "json"}
-import { fileURLToPath } from 'url'
 import path from 'path'
 import 'dotenv/config'
 
-const swaggerApp = express()
-const SERVER_SWAGGER = process.env.SERVER_SWAGGER
+import {
+    __filename,
+    __dirname,
+    PROTOCOL,
+    HOST,
+    PORT
+} from '../config/constant.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const SERVER_SWAGGER = `${PROTOCOL}://${HOST}:${PORT}`
+const swaggerApp = express()
 
 // Swagger 
 const swaggerOptions = {

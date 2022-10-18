@@ -1,6 +1,6 @@
-import { getProducts } from './endpoints/products.js'
+import { postProducts } from './endpoints/products.js'
 
-getProducts()
+postProducts()
     .then(resp => {
         console.log(resp)
     })

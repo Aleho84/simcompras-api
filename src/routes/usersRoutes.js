@@ -13,10 +13,10 @@ import {
 
 
 router.get('/login', loginError)
-router.post('/login', passport.authenticate('login', { failureRedirect: '/api/users/login' }), login)
 router.get('/signin', signinError)
-router.post('/signin', passport.authenticate('signin', { failureRedirect: '/api/users/signin' }), signin)
 router.get('/logout', logout)
+router.post('/login', passport.authenticate('login', { failureRedirect: '/api/users/login' }), login)
+router.post('/signin', passport.authenticate('signin', { failureRedirect: '/api/users/signin' }), signin)
 router.get('/currentUser', currentUser)
 
 export default router

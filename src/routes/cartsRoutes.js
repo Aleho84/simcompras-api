@@ -13,8 +13,8 @@ import {
 
 cartsRouter.get('/',  getCarts)
 cartsRouter.get('/:id',  getCartById)
-cartsRouter.post('/', isAuth, postCart)
 cartsRouter.get('/:id/products', getProductsCart)
+cartsRouter.post('/', isAuth, postCart)
 cartsRouter.post('/:id/products', isAuth, postProductsCart)
 cartsRouter.delete('/:id/products/:productId', isAuth, deleteProductsCart)
 

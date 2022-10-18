@@ -3,19 +3,21 @@ import logger from '../utils/logger.js'
 export const login = (req, res) => {
   try {
     res.status(200).json({
-      message: 'User successfully logged in',
+      message: `User ${req.user.email} successfully logged in`,
       id: req.user._id,
       email: req.user.email,
     })
   } catch (err) {
+    logger.error(err)
     res.status(500).json({ message: err.message, line: err.line })
   }
 }
 
 export const loginError = (req, res) => {
   try {
-    res.status(401).json({ message: 'login error' })
+    res.status(401).json({ message: `login error` })
   } catch (err) {
+    logger.error(err)
     res.status(500).json({ message: err.message, line: err.line })
   }
 }
@@ -28,6 +30,7 @@ export const signin = (req, res) => {
       email: req.user.email,
     })
   } catch (err) {
+    logger.error(err)
     res.status(500).json({ message: err.message, line: err.line })
   }
 
@@ -37,6 +40,7 @@ export const signinError = (req, res) => {
   try {
     res.status(500).json({ message: 'Signin error' })
   } catch (err) {
+    logger.error(err)
     res.status(500).json({ message: err.message, line: err.line })
   }
 }
@@ -54,6 +58,7 @@ export const logout = (req, res) => {
       res.status(200).send({ message: msg })
     })
   } catch (err) {
+    logger.error(err)
     res.status(500).json({ message: err.message, line: err.line })
   }
 }
@@ -67,6 +72,7 @@ export const currentUser = (req, res) => {
       res.status(200).json({ name: 'Anonymous' })
     }
   } catch (err) {
+    logger.error(err)
     res.status(500).json({ message: err.message, line: err.line })
   }
 }

@@ -1,6 +1,5 @@
 import MongoClass from '../containers/mongoClass.js'
 import { cartsSchema } from '../models/cartsSchema.js'
-import logger from '../utils/logger.js'
 
 export class MongoDBCarts extends MongoClass {
     constructor() {
@@ -18,7 +17,6 @@ export class MongoDBCarts extends MongoClass {
                 })
             return carts
         } catch (err) {
-            logger.error(err)
             throw new Error(err)
         }
     }
@@ -34,46 +32,53 @@ export class MongoDBCarts extends MongoClass {
                 })
             return cart
         } catch (err) {
-            logger.error(err)
             throw new Error(err)
         }
     }
 
     async addProducts(cart, addProducts) {
-        addProducts.forEach((product) => {
-            const productsInCart = cart.products.find(
-                p => p._id._id == product._id
+        try {
+            addProducts.forEach((product) => {
+                const productsInCart = cart.products.find(
+                    p => p._id._id == product._id
+                )
+                if (productsInCart) {
+                    productsInCart.amount++
+                } else {
+                    cart.products.push(product._id)
+                }
+            })
+            const cartUpdated = await this.collection.findByIdAndUpdate(
+                cart._id,
+                { products: cart.products }
             )
-            if (productsInCart) {
-                productsInCart.amount++
-            } else {
-                cart.products.push(product._id)
-            }
-        })
-        const cartUpdated = await this.collection.findByIdAndUpdate(
-            cart._id,
-            { products: cart.products }
-        )
-        return cartUpdated
+            return cartUpdated
+        } catch (err) {
+            throw new Error(err)
+        }
     }
 
     async deleteProduct(cart, productId) {
-        const productInCart = cart.products.find(
-            p => p._id._id == productId
-        )
-        if (productInCart) {
-            productInCart.amount > 1
-                ? productInCart.amount--
-                : (cart.products = cart.products.filter(
-                    (p) => p._id._id != productId
-                ))
-        } else {
-            throw new Error('The product is not in the cart')
+        try {
+            const productInCart = cart.products.find(
+                p => p._id._id == productId
+            )
+            if (productInCart) {
+                productInCart.amount > 1
+                    ? productInCart.amount--
+                    : (cart.products = cart.products.filter(
+                        (p) => p._id._id != productId
+                    ))
+            } else {
+                throw new Error('The product is not in the cart')
+            }
+            const cartUpdated = await this.collection.findByIdAndUpdate(
+                cart._id,
+                { products: cart.products }
+            )
+            return cartUpdated
+        } catch (err) {
+            throw new Error(err)
         }
-        const cartUpdated = await this.collection.findByIdAndUpdate(
-            cart._id,
-            { products: cart.products }
-        )
-        return cartUpdated
     }
 }
