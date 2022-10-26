@@ -160,7 +160,34 @@
  *         - application/json
  *       responses:
  *         "200":
- *           description: Get products from cart sucessfuly.
+ *           description: Delete products from cart sucessfuly.
+ *         "500":
+ *           description: Internal Server Error.
+ */
+
+/**
+ * @swagger
+ * paths: 
+ *   /api/carts/{id}:
+ *     delete:
+ *       summary: Delete cart.
+ *       description: Delete cart.
+ *       operationId: "deleteCart"
+ *       tags:
+ *         - Carts
+ *       parameters:
+ *         - name: id
+ *           in: path
+ *           required: true
+ *           description: ID cart
+ *           schema:
+ *             type: string
+ *             example: 63239e51e588d4bc805f4c5a
+ *       produces:
+ *         - application/json
+ *       responses:
+ *         "200":
+ *           description: Delete cart sucessfuly.
  *         "500":
  *           description: Internal Server Error.
  */

@@ -8,14 +8,16 @@ import {
     postCart,
     getProductsCart,
     postProductsCart,
-    deleteProductsCart
+    deleteProductsCart,
+    deleteCart
 } from '../controllers/cartsControllers.js'
 
-cartsRouter.get('/',  getCarts)
-cartsRouter.get('/:id',  getCartById)
-cartsRouter.get('/:id/products', getProductsCart)
+cartsRouter.get('/', isAuth, getCarts)
+cartsRouter.get('/:id', isAuth, getCartById)
+cartsRouter.get('/:id/products', isAuth, getProductsCart)
 cartsRouter.post('/', isAuth, postCart)
 cartsRouter.post('/:id/products', isAuth, postProductsCart)
 cartsRouter.delete('/:id/products/:productId', isAuth, deleteProductsCart)
+cartsRouter.delete('/:id', isAuth, deleteCart)
 
 export default cartsRouter

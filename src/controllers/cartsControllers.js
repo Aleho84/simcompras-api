@@ -98,3 +98,18 @@ export const deleteProductsCart = async (req, res) => {
         res.status(500).json({ message: err.message, line: err.line })
     }
 }
+
+export const deleteCart = async (req, res) => {
+    try {
+        const cartDeleted = await api.delete(req.params.id)
+        cartDeleted
+            ? res.status(200).json({
+                message: 'Cart deleted successfully',
+                cart: cartDeleted
+            })
+            : res.status(404).json({ message: `Cart not found. ID:${req.params.id}` })
+    } catch (err) {
+        logger.error(err)
+        res.status(500).json({ message: err.message, line: err.line })
+    }
+}
