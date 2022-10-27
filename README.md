@@ -18,13 +18,14 @@ You will need to pass the following environment variables
 (.env file example)
 
 	NODE_ENV=production
-	PORT=8080
-	DB_MODE=mongoDB
+	PROTOCOL=http
+	HOST=localhost
+	PORT=8080	
 	RUN_MODE=fork
 	SECRET_STRING=ADLVFEyWItdkAi9V1KPt
 	TIME_SESSION=60
-	MONGOOSE_URI=mongodb://localhost:27017/simcompras
-	SERVER_SWAGGER=http://localhost:8080/
+	DB_MODE=mongoDB
+	MONGOOSE_URI=mongodb://localhost:27017/simcompras	
 	
 ## Available Scripts
 **In the project directory, you can run:**

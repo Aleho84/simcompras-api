@@ -13,7 +13,14 @@ import {
     PORT
 } from '../config/constant.js'
 
-const SERVER_SWAGGER = `${PROTOCOL}://${HOST}:${PORT}`
+let SERVER_SWAGGER = ''
+
+if (PROTOCOL === 'https' || PROTOCOL === 'Https' || PROTOCOL === 'HTTPS') {
+    SERVER_SWAGGER = `${PROTOCOL}://${HOST}`
+} else {
+    SERVER_SWAGGER = `${PROTOCOL}://${HOST}:${PORT}`
+}
+
 const swaggerApp = express()
 
 // Swagger 
