@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title: 'Signin' }) %>
+
+    <body>
+
+        <%- include('../partials/nav', {user}) %>
+
+            <div class="container-sm" style="max-width:540px;">
+                <form class="loginForm" enctype="application/x-www-form-urlencoded" method="post"
+                    action="/signinreq">
+                    <div class="loginGroup">
+                        <input class="loginInput" id="name" name="name" type="text" placeholder=" ">
+                        <label class="loginLabel" for="username">Nombre:</label>
+                    </div>
+                    <div class="loginGroup">
+                        <input class="loginInput" id="lastname" name="lastname" type="text" placeholder=" ">
+                        <label class="loginLabel" for="username">Apellido:</label>
+                    </div>
+                    <div class="loginGroup">
+                        <input class="loginInput" id="email" name="email" type="email" placeholder=" ">
+                        <label class="loginLabel" for="email">Correo:</label>
+                    </div>
+                    <div class="loginGroup">
+                        <input class="loginInput" id="image" name="image" type="text" placeholder=" ">
+                        <label class="loginLabel" for="username">Imagen:</label>
+                    </div>
+                    <div class="loginGroup">
+                        <input class="loginInput" id="password" name="password" type="password" placeholder=" ">
+                        <label class="loginLabel" for="password">Contraseña:</label>
+                    </div>
+                    <div class="loginGroup">
+                        <input class="loginInput" id="password2" name="password2" type="password" placeholder=" ">
+                        <label class="loginLabel" for="password2">Confirmar contraseña:</label>
+                    </div>
+                    <div class="wrapper">
+                        <button class="formButton">SignIn</button>
+                    </div>
+                </form>
+            </div>
+
+    </body>
+
+    <%- include('../partials/scripts') %>
+
+</html>

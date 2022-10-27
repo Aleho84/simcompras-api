@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import passport from 'passport'
-const router = Router()
+
+const userRouter = Router()
 
 import {
     login,
@@ -12,11 +13,11 @@ import {
 } from '../controllers/usersController.js'
 
 
-router.get('/login', loginError)
-router.get('/signin', signinError)
-router.get('/logout', logout)
-router.post('/login', passport.authenticate('login', { failureRedirect: '/api/users/login' }), login)
-router.post('/signin', passport.authenticate('signin', { failureRedirect: '/api/users/signin' }), signin)
-router.get('/currentUser', currentUser)
+userRouter.get('/login', loginError)
+userRouter.get('/signin', signinError)
+userRouter.get('/logout', logout)
+userRouter.post('/login', passport.authenticate('login', { failureRedirect: '/api/users/login' }), login)
+userRouter.post('/signin', passport.authenticate('signin', { failureRedirect: '/api/users/signin' }), signin)
+userRouter.get('/currentUser', currentUser)
 
-export default router
+export default userRouter

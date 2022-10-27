@@ -16,6 +16,7 @@ import websockets from './config/websockets.js'
 
 import apiRouter from './routes/apiRoutes.js'
 import docRouter from './routes/docRoutes.js'
+import indexRouter from './routes/indexRoutes.js'
 
 import './config/passport-local.js'
 import 'dotenv/config'
@@ -54,7 +55,7 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     // app.use(morgan('dev'))
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
-    app.use(express.static(path.join(__dirname, '/public')))
+    app.use(express.static(path.join(__dirname, '../public')))
     app.use(cors({
         origin: '*',
         methods: 'GET, POST, PUT, DELETE, OPTIONS'
@@ -72,9 +73,23 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     app.use(passport.initialize())
     app.use(passport.session())
 
+    //VIEW
+    app.set('views', path.join(__dirname, '../views/pages'))
+    app.set('view engine', 'ejs')
+
+    // error handler
+    app.use(function (err, req, res, next) {
+        // solo da detalles del error en modo "development"
+        res.locals.message = err.message
+        res.locals.error = process.env.NODE_ENV === 'development' ? err : {}
+        res.status(err.status || 500)
+        res.render('error')
+    })
+
     // ROUTES
     app.use('/api', apiRouter)
-    app.use('/', docRouter)
+    app.use('/doc', docRouter)
+    app.use('/', indexRouter)
 
     // WEBSOCKET
     websockets(io)

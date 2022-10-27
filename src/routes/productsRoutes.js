@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { isAuth } from '../utils/isAuth.js'
+
 const productsRouter = Router()
 
 import {

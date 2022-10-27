@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title: 'Login Fail' }) %>
+
+    <body>
+
+        <%- include('../partials/nav', {user}) %>
+
+            <form class="loginForm" enctype="application/x-www-form-urlencoded" method="get" action="/">
+                <div class="loginGroup">
+                    <p class="Msg">Usuario o contraseña incorrecta</p>
+                </div>
+                <div class="wrapper">
+                    <button class="formButton">Volver</button>
+                </div>
+            </form>
+
+    </body>
+
+    <%- include('../partials/scripts') %>
+
+</html>
