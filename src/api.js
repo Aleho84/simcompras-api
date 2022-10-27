@@ -2,38 +2,37 @@ import cluster from 'cluster'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
-import { fileURLToPath } from 'url'
 import http from 'http'
 import mongoStore from 'connect-mongo'
 import morgan from 'morgan'
-import os from 'os'
 import passport from 'passport'
 import path from 'path'
 import { Server } from 'socket.io'
 import session from 'express-session'
 
 import connectMongoDB from './config/mongo-db.js'
-import websockets from './config/websockets.js'
-
 import logger from './utils/logger.js'
+import websockets from './config/websockets.js'
 
 import apiRouter from './routes/apiRoutes.js'
 import docRouter from './routes/docRoutes.js'
+import indexRouter from './routes/indexRoutes.js'
 
 import './config/passport-local.js'
 import 'dotenv/config'
 
-// VARIABLES
-const PORT = process.env.PORT || 8080
-const RUN_MODE = process.env.RUN_MODE || 'fork'
-const SECRET_STRING = process.env.SECRET_STRING || 'superSecretString'
-const TIME_SESSION = process.env.TIME_SESSION || 60
-const MONGOOSE_URI = process.env.MONGOOSE_URI || 'mongodb://localhost:27017/simcompras'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const nroCPUs = os.cpus().length
+import {
+    RUN_MODE,
+    SECRET_STRING,
+    MONGOOSE_URI,
+    TIME_SESSION,
+    PORT,
+    __dirname
+} from './config/constant.js'
 
 // SERVER
+logger.info(`🌱 ENVIRONMENT=${process.env.NODE_ENV}`)
+
 if (cluster.isPrimary && RUN_MODE === 'cluster') {
     logger.info(`🧮 Primary PID ${process.pid} is running. On port ${PORT}. MODO: ${RUN_MODE}.`)
     for (let i = 0; i < nroCPUs; i++) {
@@ -56,7 +55,7 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     // app.use(morgan('dev'))
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
-    app.use(express.static(path.join(__dirname, '/public')))
+    app.use(express.static(path.join(__dirname, '../public')))
     app.use(cors({
         origin: '*',
         methods: 'GET, POST, PUT, DELETE, OPTIONS'
@@ -74,9 +73,23 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     app.use(passport.initialize())
     app.use(passport.session())
 
+    //VIEW
+    app.set('views', path.join(__dirname, '../views/pages'))
+    app.set('view engine', 'ejs')
+
+    // error handler
+    app.use(function (err, req, res, next) {
+        // solo da detalles del error en modo "development"
+        res.locals.message = err.message
+        res.locals.error = process.env.NODE_ENV === 'development' ? err : {}
+        res.status(err.status || 500)
+        res.render('error')
+    })
+
     // ROUTES
     app.use('/api', apiRouter)
-    app.use('/', docRouter)
+    app.use('/doc', docRouter)
+    app.use('/', indexRouter)
 
     // WEBSOCKET
     websockets(io)
@@ -85,7 +98,7 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     connectMongoDB()
 
     // HTTP SERVER
-    const portNormalizer = normalizePort(process.env.PORT || '8080')
+    const portNormalizer = normalizePort(PORT)
     app.set('port', portNormalizer)
     const server = http.createServer(app)
     server.listen(portNormalizer)
@@ -132,6 +145,6 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
         const bind = typeof addr === 'string'
             ? 'pipe ' + addr
             : 'port ' + addr.port
-        logger.info(`💻 Server started on port ${PORT}. 🛠  Worker PID: ${process.pid}. MODO:${RUN_MODE} [${new Date().toLocaleString()}]`)
+        logger.info(`💻 Server started on port ${PORT}. 🛠  Worker PID: ${process.pid}. MODO:${RUN_MODE}`)
     }
 }

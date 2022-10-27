@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title: 'Login' }) %>
+
+  <body>
+
+    <%- include('../partials/nav', {user}) %>
+
+      <div class="container-sm" style="max-width:540px;">
+        <form class="loginForm" enctype="application/x-www-form-urlencoded" method="post" action="/loginreq">
+          <div class="loginGroup">
+            <input class="loginInput" id="username" name="email" type="email" placeholder=" ">
+            <label class="loginLabel" for="username">Usuario:</label>
+          </div>
+          <div class="loginGroup">
+            <input class="loginInput" id="password" name="password" type="password" placeholder=" ">
+            <label class="loginLabel" for="password">Contraseña:</label>
+          </div>
+          <div class="wrapper">
+            <button class="formButton">LogIn</button>
+          </div>
+        </form>
+      </div>
+
+  </body>
+
+  <%- include('../partials/scripts') %>
+
+</html>

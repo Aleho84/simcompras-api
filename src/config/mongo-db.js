@@ -17,8 +17,8 @@ const config = {
 export default async () => {
     try {
         await mongoose.connect(config.mongoDB.URL, config.mongoDB.options)
-        logger.info('💾 Connected to MongoDB')
+        logger.info('[MONGODB]: 💾 Connected to MongoDB')
     } catch (error) {
-        logger.error(`⚠ MongoDB Error: ${error}`)
+        logger.error(`[MONGODB]: ⚠ MongoDB Error: ${error}`)
     }
 }
