@@ -19,16 +19,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - name: Create .env file
-        uses: ozaytsev86/create-env-file-action@v1
-        with:
-          ENV_NODE_ENV: "production"
-          ENV_RUN_MODE: "fork"
-          ENV_PROTOCOL: http
-          ENV_HOST: ${{ secrets.HOST }}
-          ENV_PORT: ${{ secrets.PORT }}
-          ENV_SECRET_STRING: ${{ secrets.SECRET_STRING }}
-          ENV_TIME_SESSION: 60
-          ENV_DB_MODE: "mongoDB"
-          ENV_MONGOOSE_URI: ${{ secrets.MONGOOSE_URI }}  
+        run: |
+          touch .env
+          echo NODE_ENV=production >> .env
+          echo RUN_MODE=fork >> .env
+          echo ENV_PROTOCOL=http >> .env
+          echo ENV_HOST=${{ secrets.HOST }} >> .env
+          echo ENV_PORT=${{ secrets.PORT }} >> .env
+          echo ENV_SECRET_STRING=${{ secrets.SECRET_STRING }} >> .env
+          echo ENV_TIME_SESSION=60 >> .env
+          echo ENV_DB_MODE=mongoDB >> .env
+          echo ENV_MONGOOSE_URI=${{ secrets.MONGOOSE_URI }} >> .env
+          cat .env
       - run: npm run build --if-present
       - run: npm run test --if-present
