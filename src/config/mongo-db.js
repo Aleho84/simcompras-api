@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import logger from '../utils/logger.js'
-import { MONGOOSE_URI } from './config/constant.js'
+import { MONGOOSE_URI } from './constant.js'
 
 const config = {
     mongoDB: {
