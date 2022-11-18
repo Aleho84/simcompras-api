@@ -20,6 +20,7 @@ import indexRouter from './routes/indexRoutes.js'
 import './config/passport-local.js'
 
 import {
+    NODE_ENV,
     RUN_MODE,
     SECRET_STRING,
     MONGOOSE_URI,
@@ -29,7 +30,7 @@ import {
 } from './config/constant.js'
 
 // SERVER
-logger.info(`🌱 ENVIRONMENT=${process.env.NODE_ENV}`)
+logger.info(`🌱 ENVIRONMENT=${NODE_ENV}`)
 
 if (cluster.isPrimary && RUN_MODE === 'cluster') {
     logger.info(`🧮 Primary PID ${process.pid} is running. On port ${PORT}. MODO: ${RUN_MODE}.`)
@@ -50,7 +51,6 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     })
 
     // MIDDLEWARES
-    // app.use(morgan('dev'))
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
     app.use(express.static(path.join(__dirname, '../public')))
@@ -79,7 +79,7 @@ if (cluster.isPrimary && RUN_MODE === 'cluster') {
     app.use(function (err, req, res, next) {
         // solo da detalles del error en modo "development"
         res.locals.message = err.message
-        res.locals.error = process.env.NODE_ENV === 'development' ? err : {}
+        res.locals.error = NODE_ENV === 'development' ? err : {}
         res.status(err.status || 500)
         res.render('error')
     })

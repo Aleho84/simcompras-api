@@ -2,6 +2,7 @@ import winston from 'winston'
 import path, { format } from 'path'
 import 'dotenv/config'
 import {
+    NODE_ENV,
     __filename,
     __dirname
 } from '../config/constant.js'
@@ -39,7 +40,7 @@ function loggerDev() {
 
 let logger = null
 
-if (process.env.NODE_ENV === 'production') {
+if (NODE_ENV === 'production') {
     logger = loggerProd()
 } else {
     logger = loggerDev()

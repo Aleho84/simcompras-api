@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 import logger from '../utils/logger.js'
-import 'dotenv/config'
-
-const MONGOOSE_URI = process.env.MONGOOSE_URI || 'mongodb://localhost:27017/simcompras'
+import { MONGOOSE_URI } from './config/constant.js'
 
 const config = {
     mongoDB: {

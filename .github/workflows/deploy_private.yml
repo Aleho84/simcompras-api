@@ -26,7 +26,7 @@ jobs:
           echo PROTOCOL=http >> .env
           echo HOST= ${{ secrets.HOST }} >> .env
           echo PORT= ${{ secrets.PORT }} >> .env
-          echo SECRET_STRING= ${{ secrets.SuperSecret }} >> .env
+          echo SECRET_STRING= ${{ secrets.SECRET_STRING }} >> .env
           echo TIME_SESSION=60 >> .env
           echo DB_MODE=mongoDB >> .env
           echo MONGOOSE_URI= ${{ secrets.MONGOOSE_URI }} >> .env

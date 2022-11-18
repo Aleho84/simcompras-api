@@ -5,6 +5,7 @@ import os from 'os'
 
 import 'dotenv/config'
 
+export const NODE_ENV = process.env.NODE_ENV || 'production'
 export const PROTOCOL = process.env.PROTOCOL || 'http'
 export const HOST = process.env.HOST || 'localhost'
 export const PORT = process.env.PORT || 8080
