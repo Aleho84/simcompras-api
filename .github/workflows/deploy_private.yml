@@ -18,17 +18,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-      - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1.3
         with:
-          ENV_NODE_ENV: "production"
-          ENV_RUN_MODE: "fork"
-          ENV_PROTOCOL: http
-          ENV_HOST: 127.0.0.1
-          ENV_PORT: 3000
-          ENV_SECRET_STRING: "ADLVFEyWItdkAi9V1KPt"
-          ENV_TIME_SESSION: 60
-          ENV_DB_MODE: "mongoDB"
-          ENV_MONGOOSE_URI: "mongodb://simcompras:simpass@127.0.0.1:27017/simcompras"          
+          envkey_NODE_ENV: "production"
+          envkey_RUN_MODE: "fork"
+          envkey_PROTOCOL: http
+          envkey_HOST: ${{ secrets.HOST }}
+          envkey_PORT: ${{ secrets.PORT }}
+          envkey_SECRET_STRING: ${{ secrets.SECRET_STRING }}
+          envkey_TIME_SESSION: 60
+          envkey_DB_MODE: "mongoDB"
+          envkey_MONGOOSE_URI: ${{ secrets.MONGOOSE_URI }}  
       - run: npm run build --if-present
       - run: npm run test --if-present
