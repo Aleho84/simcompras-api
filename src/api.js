@@ -4,7 +4,6 @@ import cors from 'cors'
 import express from 'express'
 import http from 'http'
 import mongoStore from 'connect-mongo'
-import morgan from 'morgan'
 import passport from 'passport'
 import path from 'path'
 import { Server } from 'socket.io'
@@ -19,7 +18,6 @@ import docRouter from './routes/docRoutes.js'
 import indexRouter from './routes/indexRoutes.js'
 
 import './config/passport-local.js'
-import 'dotenv/config'
 
 import {
     RUN_MODE,

@@ -3,6 +3,8 @@ import { fileURLToPath } from 'url'
 import path from 'path'
 import os from 'os'
 
+import 'dotenv/config'
+
 export const PROTOCOL = process.env.PROTOCOL || 'http'
 export const HOST = process.env.HOST || 'localhost'
 export const PORT = process.env.PORT || 8080
