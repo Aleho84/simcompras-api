@@ -12,7 +12,6 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - run: pm2 stop 0
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -31,6 +30,5 @@ jobs:
           ENV_TIME_SESSION: 60
           ENV_DB_MODE: "mongoDB"
           ENV_MONGOOSE_URI: "mongodb://simcompras:simpass@192.168.0.3:27017/simcompras"          
-      - run: pm2 start 0
       - run: npm run build --if-present
       - run: npm run test --if-present
