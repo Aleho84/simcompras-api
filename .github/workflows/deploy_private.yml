@@ -22,14 +22,14 @@ jobs:
         run: |
           touch .env
           echo NODE_ENV=production >> .env
-          echo RUN_MODE=fork >> .env
-          echo ENV_PROTOCOL=http >> .env
-          echo ENV_HOST=${{ secrets.HOST }} >> .env
-          echo ENV_PORT=${{ secrets.PORT }} >> .env
-          echo ENV_SECRET_STRING=${{ secrets.SECRET_STRING }} >> .env
-          echo ENV_TIME_SESSION=60 >> .env
-          echo ENV_DB_MODE=mongoDB >> .env
-          echo ENV_MONGOOSE_URI=${{ secrets.MONGOOSE_URI }} >> .env
+          echo MODE=fork >> .env
+          echo PROTOCOL=http >> .env
+          echo HOST= ${{ secrets.HOST }} >> .env
+          echo PORT= ${{ secrets.PORT }} >> .env
+          echo SECRET_STRING= ${{ secrets.SuperSecret }} >> .env
+          echo TIME_SESSION=60 >> .env
+          echo DB_MODE=mongoDB >> .env
+          echo MONGOOSE_URI= ${{ secrets.MONGOOSE_URI }} >> .env
           cat .env
       - run: npm run build --if-present
       - run: npm run test --if-present
