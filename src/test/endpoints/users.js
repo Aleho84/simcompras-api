@@ -12,8 +12,8 @@ const URL = `${PROTOCOL}://${HOST}:${PORT}`
 export const postLogInUser = async () => {
     const urlRequest = `${URL}/api/users/login`
     const body = {
-        "email": "pepeargento@mail.com",
-        "password": "fatiga"
+        "email": "admin@admin.com",
+        "password": "admin"
     }
     const response = await axios.post(urlRequest, body)
     return response.data
