@@ -4,6 +4,6 @@
   "watch": true,
   "ignore_watch": ["node_modules", "./src/logs"],
   "env": {
-    "NODE_ENV": "prodcution"
+    "NODE_ENV": "production"
   }
 }
