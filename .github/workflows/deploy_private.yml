@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
+        uses: ozaytsev86/create-env-file-action@v1
         with:
           ENV_NODE_ENV: "production"
           ENV_RUN_MODE: "fork"
